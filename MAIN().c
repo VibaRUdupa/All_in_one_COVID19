@@ -148,6 +148,7 @@ void main()
         }
         case 7:
         {
+
             user[current_index].point=0;
             mini_games(current_index);
             break;
@@ -239,14 +240,113 @@ void mini_games(int current_index)
   return;
 }
 
-void riddles_quiz(int a)
+void riddles_quiz(int j)
 {
-  printf("\nCOMING SOON\n");
+  char a, ans[20];
+  int point=0;
+  printf("\nWELCOME\nThe Riddles and Quizes game.\nGeneral Instructions.\n1.Four riddles will be displayed first, one after another.\n2.A correct guess will award you with 10 points.\n3.After the riddles, four general knowledge questions will be asked one after another(MCQs).\n4.The correct answer will give you 10 points.\nIMPORTANT: ALL ANSWERS MUST BE IN LOWER CASE alphabets.\n\nALL THE BEST!!!\n\n ");
+  printf("\nRIDDLES:\n");
+
+  printf("\nQuestion 1.\nWhat has roots as nobody sees,\nIs taller than trees,\nUp, up it goes,\nAnd yet never grows?\n\nAns:");
+  scanf("  %s",&ans);
+  if(strcmp(ans,"mountains")==0 || strcmp(ans,"mountain")==0)
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("Incorrect guess! The answer is : mountains\n\n");}
+
+  for(int i=0; i<20; i++)
+  ans[i]='\0';
+
+  printf("\nQuestion 2.\nThis thing all things devours;\nBirds, beasts, trees, flowers;\nGnaws iron, bites steel;\nGrinds hard stones to meal;\nSlays king, ruins town,\nAnd beats mountain down.\n\nAns:");
+  scanf("  %s",&ans);
+  if(strcmp(ans,"time")==0)
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("Incorrect guess! The answer is : time\n\n");}
+
+  for(int i=0; i<20; i++)
+  ans[i]='\0';
+
+  printf("\nQuestion 3.\nA box without hinges, key, or lid,\nYet golden treasure inside is hidden.\n\nAns:");
+  scanf("  %s",&ans);
+  if(strcmp(ans,"egg")==0 || strcmp(ans,"eggs")==0)
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("Incorrect guess! The answer is : egg\n\n");}
+
+  for(int i=0; i<20; i++)
+  ans[i]='\0';
+
+  printf("\nQuestion 4.\nWhat has a neck,\nbut no head,\nYet wears a cap.\n\nAns:");
+  scanf("  %s",&ans);
+  if(strcmp(ans,"bottle")==0 || strcmp(ans,"bottles")==0)
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("Incorrect guess! The answer is : bottle\n\n");}
+
+  printf("\nYou have completed the riddles. Now moving on to GK quiz: \n");
+
+  printf("\nQuestion 1.\nWho discovered penicillin?\na.Alexander Fleming.\nb.Edward Jenner\nc.Louis Pasteur\nd.Robert Koch\nAns:");
+  scanf("  %c",&a);
+  if(a=='a'||a=='A')
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("\nIncorrect guess! The answer is : a.Alexander Fleming\n\n");}
+
+  printf("\nQuestion 2.\nThe Indian to beat the computers in mathematical wizardry is\nA.Ramanujam\nB.Rina Panigrahi\nC.Raja Ramanna\nD.Shakunthala Devi\nAns:");
+  scanf("  %c",&a);
+  if(a=='d'||a=='D')
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("\nIncorrect guess! The answer is : D. Shakunthala Devi\n\n");}
+
+  printf("\nQuestion 3.\nThe members of Lok Sabha hold office for a term of\nA.4 years\nB.5 years\nC.6 years\nD.3 years\nAns:");
+  scanf("  %c",&a);
+  if(a=='b'||a=='B')
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("\nIncorrect guess! The answer is : B. 5 years\n\n");}
+
+  printf("\nQuestion 4.\nThe Battle of Plassey was fought in:\nA.1757\nB.1782\nC.1748\nD.1764\nAns:");
+  scanf("  %c",&a);
+  if(a=='a'||a=='A')
+  {
+    printf("\nCorrect Guess! You got 10 points\n\n");
+    point=point+10;
+  }
+  else
+  { printf("\nIncorrect guess! The answer is : A. 1757\n\n");}
+
+  user[j].point=point;
+  if( user[j].high_score==0 ||  user[j].high_score<user[j].point )
+  user[j].high_score=user[j].point;
+  printf("\n\nYour score: %d \nYour high score: %d\n", user[j].point, user[j].high_score);
   printf("\nWould like to try the next game? (Y/N): ");
   char ch;
   scanf("  %c",&ch);
   if(toupper(ch)=='Y')
-  hangman(a);
+  hangman(j);
   return;
 }
 
@@ -348,6 +448,11 @@ void tic_tac_toe(int a)
     printf("\t\tWELCOME TO TIC-TAC-TOE\n\nThe instructions for this game are as follows:\n1.The user must choose either 'X' or 'O'.\n2.The game always starts with 'X'.\n3.The boxes for the game are numbered as follows:\n");
     printf("\n\n");
 
+   // matrix[3][3] = {'1','2','3','4','5','6','7','8','9'};
+
+    //loc_avail[9] = {'1','2','3','4','5','6','7','8','9'};
+
+
     for(int i=0;i<3;i++)
     {
       for(int j=0;j<3;j++)
@@ -372,10 +477,12 @@ void tic_tac_toe(int a)
       case 'X': comp='O';
                 printf("\nAs you have chosen X, you must begin the game.");
                 user_game();
+                // printf("IN tictacto");
                 break;
       case 'O': comp='X';
                 printf("\nAs you have chosen O, computer will begin the game.");
                 comp_game();
+                 //printf("IN tictactoe");
                 break;
       default: printf("INVALID CHOICE ENTERED.");
                goto A;
@@ -384,6 +491,20 @@ void tic_tac_toe(int a)
     user[a].high_score=user[a].point;
   printf("\nYour current points: %d\n", user[a].point);
   printf("\nYour high score: %d\n", user[a].high_score);
+
+  int z=0;
+  for(int b=0; b<3; b++)
+    for(int c=0; c<3; c++)
+  {
+      matrix[b][c]=z+'1';
+      z++;
+  }
+  z=0;
+    for(int v=0;v<10;v++)
+    {
+        loc_avail[v] = z+'1';
+        z++;
+    }
   return;
   }
 
@@ -394,11 +515,11 @@ void tic_tac_toe(int a)
       {
             char key1=matrix[1][1], key2=matrix[0][0], key3=matrix[2][2];
             if((key1==matrix[0][0] && key1==matrix[2][2]) || (key1==matrix[1][0] && key1==matrix[1][2]) || (key1==matrix[0][1] && key1==matrix[2][1]) || (key1==matrix[0][1] && key1==matrix[2][0]))
-            {result(key1,a); return;}
+            {result(key1,a); /*printf("IN RESULT1");*/ return;}
             if((key2==matrix[1][0] && key2==matrix[2][0]) ||(key2==matrix[0][1] && key2==matrix[0][2]))
-            {result(key2,a); return;}
+            {result(key2,a); /*printf("IN RESULT2");*/ return;}
             if((key3==matrix[1][2] && key3==matrix[0][2]) ||(key3==matrix[2][0] && key3==matrix[2][1]))
-            {result(key3,a);return;}
+            {result(key3,a);  /*printf("IN RESULT3");*/ return;}
 
       }
       //check if game is drawn or ongoing.
@@ -465,6 +586,7 @@ void tic_tac_toe(int a)
         flag==0;
         char Last_player='U';
         check_game('U');
+        //printf("\nIN USER GAME\n");
         return;
     }
 
@@ -507,6 +629,7 @@ void tic_tac_toe(int a)
       flag==0;
       char Last_player='C';
       check_game('C');
+       //printf("IN COMPGAME");
       return;
     }
 
@@ -520,6 +643,7 @@ void tic_tac_toe(int a)
         printf("\nYou have won over the computer. CONGRAGULATIONS!\nYou won 10 points.\n");
         printf("press any key to continue:");
         scanf("   %c",&garbage);
+      //   printf("IN print-RESULT1");
         return(0);
       }
       else
@@ -527,6 +651,7 @@ void tic_tac_toe(int a)
         printf("\nThe computer has won the game. You have got 0 points in this game.\n");
         printf("press any key to continue:");
         scanf("   %c",&garbage);
+        // printf("IN print-RESULT2");
         return(0);
       }
 
